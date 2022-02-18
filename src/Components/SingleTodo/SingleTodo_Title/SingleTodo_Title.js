@@ -1,23 +1,22 @@
-import './SingleTodo_Title.css'
-import CircularProgress from '@mui/material/CircularProgress';
+import {CircularProgress, Grid, Typography} from '@mui/material';
 
 const SingleTodo_Title = ({item}) => {
     return(
-        <div className={'SingleTodo_Title'}>
-            <div className={'SingleTodo_Title-Circle'}>
-                <CircularProgress sx={{ color: '#001E3C' }} variant="determinate" value={((item.items.filter(i => i.status === true).length)/(item.items.length))*100} />
-            </div>
-            <div className={'SingleTodo_Title-Name'}>
-                <div>
-                    <h1>
+        <Grid display={'flex'} alignItems={'center'} flexDirection={'row'} width={'80%'} margin={'auto'} maxWidth={'1000px'} mb={3}>
+            <Grid mr={2}>
+                <CircularProgress sx={{ color: '#E94560' }} variant="determinate" value={((item.items.filter(i => i.status === true).length)/(item.items.length))*100} />
+            </Grid>
+            <Grid mr={'1rem'}>
+                <Grid>
+                    <Typography variant={'h4'}>
                         {item.title}
-                    </h1>
-                </div>
-                <div>
+                    </Typography>
+                </Grid>
+                <Grid>
                     {item.items.filter(i => i.status === true).length} of {item.items.length} Complete
-                </div>
-            </div>
-        </div>
+                </Grid>
+            </Grid>
+        </Grid>
     )
 }
 

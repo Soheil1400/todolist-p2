@@ -1,17 +1,22 @@
-import './SingleTodo_AddInput.css'
-import Button from "@mui/material/Button";
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, styled, TextField} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import TextField from "@mui/material/TextField";
-import DialogActions from "@mui/material/DialogActions";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const SingleTodo_AddInput = ({dispatch ,item}) => {
     const [open, setOpen] = useState(false);
     const [title ,setTitle] = useState({title: ''})
+    const [error,setError] = useState(false)
+    const PrimeButton = styled(Button)({
+        backgroundColor:'#E94560',
+        boxShadow:'none',
+        border:'1px solid #E94560',
+        '&:hover':{
+            backgroundColor:'#fff',
+            color:'#E94560',
+            border:'1px solid #E94560',
+            boxShadow:'none',
+        }
+    })
     const handleClose = () => {
         setOpen(false)
         setTitle({title: ''})
@@ -20,18 +25,27 @@ const SingleTodo_AddInput = ({dispatch ,item}) => {
         e.preventDefault()
         const Title = title.title
         const TodoId = item.id
-        dispatch({type:'AddNewItem' , payload: {Title ,TodoId}});
-        setTitle({title: ''})
-        setOpen(false)
+        if(Title !== ''){
+            dispatch({type:'AddNewItem' , payload: {Title ,TodoId}});
+            setTitle({title: ''})
+            setOpen(false)
+        }
+        setError(true)
     }
     const handleNewTodo = e => {
         setTitle({title: e.target.value})
     }
+    useEffect(()=>{
+        setError(false)
+    },[open])
+    useEffect(()=>{
+        title.title === '' ? setError(true) : setError(false)
+    },[title])
     return(
-        <div className={'SingleTodo_AddInput'}>
-            <Button sx={{backgroundColor: '#001E3C'}} size={'small'} variant="contained" onClick={()=>setOpen(true)}>
+        <Grid width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'center'}>
+            <PrimeButton sx={{backgroundColor: '#E94560'}} size={'small'} variant="contained" onClick={()=>setOpen(true)}>
                 Add Item<AddIcon/>
-            </Button>
+            </PrimeButton>
             <Dialog open={open} onClose={handleClose} onSubmit={handleSubmit}>
                 <form>
                     <DialogTitle>Todo item Title</DialogTitle>
@@ -39,7 +53,7 @@ const SingleTodo_AddInput = ({dispatch ,item}) => {
                         <DialogContentText>
                             Please type new todo item title :)
                         </DialogContentText>
-                        <TextField value={title.title} onChange={e=>handleNewTodo(e)} autoFocus margin="dense" id="name" label="Todo Title" type="text" fullWidth/>
+                        <TextField  error={error} helperText={error === true ? 'empty' : ''} value={title.title} onChange={e=>handleNewTodo(e)} autoFocus margin="dense" id="name" label="Todo Title" type="text" fullWidth/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose}>Cancel</Button>
@@ -47,7 +61,7 @@ const SingleTodo_AddInput = ({dispatch ,item}) => {
                     </DialogActions>
                 </form>
             </Dialog>
-        </div>
+        </Grid>
     )
 }
 

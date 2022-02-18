@@ -1,15 +1,21 @@
-import './MainApp_Title.css'
+import {Grid, styled, Typography} from "@mui/material";
 
 const MainApp_Title = () => {
+    const Line = styled(Grid)({
+        height: '2px',
+        width: '25%',
+        backgroundColor: '#E7E7E9'
+    })
     return (
-        <div className={'MainApp_Title'}>
-            <div className={'MainApp_Title-line'}/>
-            <div className={'MainApp_Title-title'}>
-                <p className={'MainApp_Title-boldTitle'}>Todo &nbsp;</p>
-                <p className={'MainApp_Title-lightTitle'}>Lists</p>
-            </div>
-            <div className={'MainApp_Title-line'}/>
-        </div>
+        <Grid display={'flex'} alignItems={'center'} justifyContent={'center'} flexDirection={'row'} mt={4}>
+            <Line/>
+            <Grid display={'flex'} justifyContent={'center'} width={'50%'} flexDirection={'row'} my={3}
+                  fontSize={'1.5rem'}>
+                <Typography>Todo &nbsp;</Typography>
+                <Typography color={'#B1B1B2'} fontWeight={'lighter'}>Lists</Typography>
+            </Grid>
+            <Line/>
+        </Grid>
     )
 }
 

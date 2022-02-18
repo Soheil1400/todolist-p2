@@ -1,4 +1,4 @@
-import Alert from '@mui/material/Alert';
+import {Alert, Grid} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import {useNavigate} from "react-router-dom";
@@ -11,15 +11,15 @@ const SingleTodo_Alert = ({alert, setAlert, dispatch}) => {
         setTimeout(() => navigate('/'), 5);
     }
     return (
-        <div style={{padding:'0.5rem'}}>
+        <Grid p={'0.5rem'}>
             <Alert variant="filled" severity="error" style={{display: alert.display}} action={
-                <div>
-                    <CheckIcon onClick={()=>handleDeleteTodo(alert.id)}/>
-                    <ClearIcon onClick={()=>setAlert({display:'none',id:''})} />
-                </div>}>
+                <Grid>
+                    <CheckIcon cursor={'pointer'} onClick={()=>handleDeleteTodo(alert.id)}/>
+                    <ClearIcon cursor={'pointer'} onClick={()=>setAlert({display:'none',id:''})} />
+                </Grid>}>
                 Are you sure to delete ?
             </Alert>
-        </div>
+        </Grid>
     )
 }
 

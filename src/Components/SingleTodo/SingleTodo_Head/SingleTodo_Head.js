@@ -1,20 +1,20 @@
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import DeleteIcon from '@mui/icons-material/Delete';
-import './SingleTodo_Head.css'
 import {Link} from 'react-router-dom'
+import {Grid} from "@mui/material";
 
 const SingleTodo_Head = ({item ,setAlert}) => {
     return(
-        <div className={'SingleTodo_Head'}>
-            <div>
+        <Grid p={'1rem'} width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'space-between'} flexDirection={'row'}>
+            <Grid>
                 <Link to={'/'}>
                     <KeyboardBackspaceIcon fontSize={'large'}/>
                 </Link>
-            </div>
-            <div>
-                <DeleteIcon onClick={()=>setAlert({display:'flex',id:item.id})} fontSize={'large'}/>
-            </div>
-        </div>
+            </Grid>
+            <Grid>
+                <DeleteIcon cursor={'pointer'} onClick={()=>setAlert({display:'flex',id:item.id})} fontSize={'large'}/>
+            </Grid>
+        </Grid>
     )
 }
 
