@@ -8,7 +8,7 @@ const SingleTodo_Alert = ({alert, setAlert, dispatch}) => {
     const handleDeleteTodo = todoId =>{
         dispatch({type: 'DeleteTodo', payload: {todoId}})
         setAlert({display:'none',id:''})
-        setTimeout(() => navigate('/'), 5);
+        setTimeout(() => navigate('/todolist-p2'), 5);
     }
     return (
         <Grid p={'0.5rem'}>

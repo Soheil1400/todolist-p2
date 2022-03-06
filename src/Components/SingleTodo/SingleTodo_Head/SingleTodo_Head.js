@@ -7,7 +7,7 @@ const SingleTodo_Head = ({item ,setAlert}) => {
     return(
         <Grid p={'1rem'} width={'100%'} display={'flex'} alignItems={'center'} justifyContent={'space-between'} flexDirection={'row'}>
             <Grid>
-                <Link to={'/'}>
+                <Link to={'/todolist-p2'}>
                     <KeyboardBackspaceIcon fontSize={'large'}/>
                 </Link>
             </Grid>

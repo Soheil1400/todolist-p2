@@ -8,7 +8,7 @@ function App() {
   return (
       <BrowserRouter>
         <Routes>
-          <Route index element={<MainContainer/>} />
+          <Route index path={'/todolist-p2'} element={<MainContainer/>} />
           <Route path="/:id" element={<SingleContainer/>} />
         </Routes>
       </BrowserRouter>
