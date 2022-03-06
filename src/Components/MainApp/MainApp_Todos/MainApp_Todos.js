@@ -27,6 +27,7 @@ const MainApp_Todos = ({state, dispatch}) => {
         marginRight: '1rem',
         cursor: 'pointer',
         backgroundColor: '#E94560',
+        height:'350px',
         boxShadow: ' rgb(3 0 71 / 9%) 0px 1px 3px',
         '&:hover': {
             boxShadow: 'rgb(3 0 71 / 9%) 0px 8px 45px'
@@ -47,7 +48,7 @@ const MainApp_Todos = ({state, dispatch}) => {
                         <Line/>
                         <Grid>
                             <ul>
-                                {todo.items.slice(0,4).map(item => item.title !== 0 ? (
+                                {todo.items.slice(0,5).map(item => item.title !== 0 ? (
                                     <li key={item.id}>
                                         <Checkbox size={'small'} type={'checkbox'} checked={item.status}
                                                   id={`${todo.id} - ${item.id}`}
@@ -62,7 +63,7 @@ const MainApp_Todos = ({state, dispatch}) => {
                                     </li>) : '')}
                                     <li style={{width:'100%',display:'flex',justifyContent:"center",paddingTop:'10px'}}>
                                         <Link  to={`/${todo.id}`}>
-                                            {todo.items.length > 4 ? 'Show more ...' : ''}
+                                            {todo.items.length > 5 ? 'Show more ...' : ''}
                                         </Link>
                                     </li>
                             </ul>
